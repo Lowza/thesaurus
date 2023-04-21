@@ -14,28 +14,38 @@ function App() {
   const [previousWord, setPreviousWord] = useState("");
   const [synonyms, setSynonyms] = useState<Synonym[]>([]);
 
-  const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    setPreviousWord(word);
+  const fetchSynonyms = (word: string) => {
     fetch(`${BASE_URL}/words?rel_syn=${word}&max=10`)
       .then((response) => response.json())
       .then(setSynonyms);
+  };
 
+  const handleFetchSynonyms = (e: React.FormEvent) => {
+    e.preventDefault();
+    fetchSynonyms(word);
+    setPreviousWord(word);
     setWord("");
+  };
+
+  const handleClickedSynonym = (word: string) => {
+    setWord(word);
+    setPreviousWord(word);
+    fetchSynonyms(word);
   };
 
   return (
     <div className="App">
       <h1>Synonym Finder</h1>
-      <form onSubmit={handleFormSubmit}>
+      <form onSubmit={handleFetchSynonyms}>
         <input id="word-input" onChange={(e) => setWord(e.target.value)} value={word} placeholder="Search for any word"></input>
         <Button>Submit</Button>
       </form>
       <h2>{previousWord}</h2>
       <ul>
         {synonyms.map((synonym) => (
-          <li key={synonym.word}>{synonym.word}</li>
+          <li onClick={() => handleClickedSynonym(synonym.word)} key={synonym.word}>
+            {synonym.word}
+          </li>
         ))}
       </ul>
     </div>
