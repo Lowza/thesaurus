@@ -1,0 +1,33 @@
+button {
+  background-color: hsl(200, 100%, 35%);
+  color: hsl(0, 0%, 100%);
+  padding: 10px 25px;
+  font-size: large;
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 4px 12px;
+  margin: 10px;
+}
+
+button:hover {
+  background-color: hsl(200, 100%, 30%);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  transition: all;
+}
+
+button:focus {
+  outline: 3px solid hsl(200, 100%, 55%);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+button:active {
+  scale: 98%;
+  outline: none;
+}
+
+button:disabled {
+  background-color: hsla(200, 20%, 60%, 0.2);
+  cursor: not-allowed;
+}
