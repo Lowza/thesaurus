@@ -31,6 +31,7 @@ function App() {
     setWord(word);
     setPreviousWord(word);
     fetchSynonyms(word);
+    setWord("");
   };
 
   return (
